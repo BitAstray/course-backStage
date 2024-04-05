@@ -6,6 +6,40 @@ import IndexPage from "@/views/index.vue";
 import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router";
 import { useAuth } from "@/composables/auth";
 
+export const modules = [
+  {
+    path: "user",
+    name: "用户模块",
+    component: () => import("@/views/manager/user.vue"),
+  },
+  {
+    path: "video",
+    name: "视频模块",
+    component: () => import("@/views/manager/video.vue"),
+  },
+  {
+    path: "order",
+    name: "订单模块",
+    component: () => import("@/views/manager/order.vue"),
+  },
+  {
+    path: "product",
+    name: "课程模块",
+    children: [
+      {
+        path: "list",
+        name: "课程管理",
+        component: () => import("@/views/manager/product/list.vue"),
+      },
+      {
+        path: "add",
+        name: "添加课程",
+        component: () => import("@/views/manager/product/add.vue"),
+      },
+    ],
+  },
+];
+
 export const routes: RouteRecordRaw[] = [
   {
     path: "/",
@@ -21,6 +55,7 @@ export const routes: RouteRecordRaw[] = [
     path: "/manager",
     name: "后台管理",
     component: () => import("@/views/manager.vue"),
+    children: modules,
   },
 ];
 

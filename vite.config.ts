@@ -11,12 +11,17 @@ import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
 import PxToRem from "./px-to-rem";
+import VueJsx from "@vitejs/plugin-vue-jsx";
 
 export default defineConfig({
   plugins: [
+    PxToRem(),
+    vue(),
+    Unocss(),
+    VueJsx(),
     AutoImport({
       dts: "src/types/auto-imports.d.ts", // 生成类型声明文件，自动引入相关插件
-      imports: ["vue", "pinia", "@vueuse/core"], // 自动引入哪些内容
+      imports: ["vue", "pinia", "@vueuse/core", "vue-router"], // 自动引入哪些内容
       dirs: ["src/composables"], // 自动导入composables目录下的模块
     }),
     Components({
@@ -24,9 +29,6 @@ export default defineConfig({
       dts: "./src/types/components.d.ts", //生成类型声明文件，自动引入相关组件
       resolvers: [AntDesignVueResolver({ resolveIcons: true })],
     }),
-    vue(),
-    Unocss(),
-    PxToRem(),
   ],
   resolve: {
     alias: {

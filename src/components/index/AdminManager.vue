@@ -6,7 +6,7 @@
 
 <template>
   <div relative>
-    <router-link to="/manager">
+    <router-link to="/manager/user">
       <div
         class="bg"
         absolute
