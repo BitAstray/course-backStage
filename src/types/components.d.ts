@@ -9,9 +9,19 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AdminManager: typeof import('./../components/index/AdminManager.vue')['default']
+    EchartsContainer: typeof import('./../components/EchartsContainer.vue')['default']
+    FlowStat: typeof import('./../components/index/FlowStat.vue')['default']
     LockOutlined: typeof import('@ant-design/icons-vue')['LockOutlined']
+    Map: typeof import('./../components/index/Map.vue')['default']
+    OrderTrendStatistics: typeof import('./../components/index/OrderTrendStatistics.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TodayCurrentData: typeof import('./../components/index/TodayCurrentData.vue')['default']
+    TopPurchase: typeof import('./../components/index/TopPurchase.vue')['default']
+    TopWebsite: typeof import('./../components/index/TopWebsite.vue')['default']
+    TypeDistribution: typeof import('./../components/index/TypeDistribution.vue')['default']
     UserOutlined: typeof import('@ant-design/icons-vue')['UserOutlined']
+    UserTrendStatistics: typeof import('./../components/index/UserTrendStatistics.vue')['default']
   }
 }

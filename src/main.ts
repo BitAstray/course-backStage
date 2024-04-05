@@ -12,6 +12,10 @@ import "uno.css";
 import "@unocss/reset/tailwind.css";
 import "./assets/css/global.css";
 
+import * as Echarts from "echarts";
+import ChinaGeoMap from "./assets/lib/china.json";
+Echarts.registerMap("chinaMap", ChinaGeoMap as any);
+
 const app = createApp(App);
 
 app.use(createPinia());
