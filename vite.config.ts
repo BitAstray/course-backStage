@@ -1,16 +1,36 @@
-import { fileURLToPath, URL } from 'node:url'
+/*
+ * @Author: BitCreate
+ * @Date: 2024-04-01 21:58:14
+ */
+import { fileURLToPath, URL } from "node:url";
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import Unocss from "unocss/vite";
+import AutoImport from "unplugin-auto-import/vite";
+import Components from "unplugin-vue-components/vite";
+import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
+import PxToRem from "./px-to-rem";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    AutoImport({
+      dts: "src/types/auto-imports.d.ts", // 生成类型声明文件，自动引入相关插件
+      imports: ["vue", "pinia", "@vueuse/core"], // 自动引入哪些内容
+      dirs: ["src/composables"], // 自动导入composables目录下的模块
+    }),
+    Components({
+      dirs: ["src/components"], //自动导入components目录下的组件
+      dts: "./src/types/components.d.ts", //生成类型声明文件，自动引入相关组件
+      resolvers: [AntDesignVueResolver({ resolveIcons: true })],
+    }),
     vue(),
+    Unocss(),
+    PxToRem(),
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  }
-})
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+    },
+  },
+});
